@@ -1,3 +1,6 @@
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+const ctx = new AudioContext();
+
 var djMusic = new Audio("ochiba.mp3");
 const btnPlay  = document.querySelector("#btn-play");   // <button>
 const btnMute = document.querySelector("#btn-mute");
@@ -6,7 +9,7 @@ const record = document.getElementById("record")
 const turnTable = document.getElementById("TurnTable")
 var playSpeed;
 
-
+const track = ctx.createMediaElementSource(djMusic);
 
 
 //これは「再生ボタン」に切り替えるやつ
@@ -20,6 +23,7 @@ function playBtn() {
 //これは「一時停止ボタン」に切り替えるやつ
 function pauseBtn() {
   btnPlay.innerHTML = '<i id="djPlay" class="fas fa-pause"></i>';  // 「一時停止ボタン」に切り替え
+  track.connect(ctx.destination);
   djMusic.play();
   songName.classList.add("marquee-inner");
   console.log(record.value)
