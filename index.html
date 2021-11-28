@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>WebDJ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="jquery.knob.js"></script>
+    <script src="Tone.js"></script>
+
+</head>
+<body>
+    <input type="file" id="soundInput" accept="audio/*">
+
+    <div class="marquee">
+        <h1 id="SongName">Now Stopping...</h1>
+    </div>
+
+    <div id="TurnTable">
+        <input type="text" id="record" class="dial" data-min="-5" data-max="5" data-step="0.1" value="1.0" data-width="100em" data-height="100em" data-angleOffset="150">
+    </div>
+    <!--<img id="record" src="record.jpg">-->
+    <div id=btn>
+        <button id="btn-mute" type="button"><i id="djMute" class="fas fa-volume-up"></i></button>
+        <button id="btn-play" type="button"><i id="djPlay" class="fas fa-play"></i></button>
+    </div>
+    <script src="main.js"></script>
+    <script>
+        $(function() {
+            $(".dial").knob();
+        });
+    </script>
+
+</body>
+</html>
