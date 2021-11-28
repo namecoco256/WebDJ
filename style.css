@@ -1,0 +1,63 @@
+body{
+    text-align: center;
+    padding: 1em;
+}
+#SongName {
+    color: #F27200;
+    font-size:3em;
+}
+#turntable{
+    width: 100em;
+    height: 100em;
+    border-radius: 1px;
+}
+#record{
+    width: 40em;
+    height: 40em;
+}
+#btn{
+    display: flex;
+    flex-wrap: wrap;
+}
+#btn-mute, #btn-play{
+    width: 7em;
+    height: 7em;
+    margin:0 auto;
+
+}
+#djMute, #djPlay{
+    transform: scale(4);
+}
+.marquee {
+    overflow: hidden; /* スクロールバーが出ないように */
+    position: relative; /* マーキーの内容部分の位置の基準になるように */
+    width:50em;
+    height:7em;
+    margin:0 auto;
+}
+   /* マーキーの内容部分の高さ確保 */
+.marquee::after {
+    content: "";
+    white-space: nowrap;
+    display: inline-block;
+}
+  /* マーキーさせたい部分(内側) */
+.marquee > .marquee-inner {
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    animation-name: marquee;
+    animation-timing-function: linear;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+}
+  /* マウスオーバーでマーキーストップ */
+.marquee > .marquee-inner:hover {
+    animation-play-state: paused;
+    cursor: default;
+}
+  /** マーキーアニメーション */
+@keyframes marquee {
+    0% { left: 100%; transform: translate(0); }
+    100% { left: 0; transform: translate(-100%); }
+}
