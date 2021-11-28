@@ -1,4 +1,3 @@
-var toneMusic = new Tone.Player("ochiba.mp3").sync().start(0);
 var djMusic = new Audio("ochiba.mp3");
 const btnPlay  = document.querySelector("#btn-play");   // <button>
 const btnMute = document.querySelector("#btn-mute");
@@ -7,19 +6,8 @@ const record = document.getElementById("record")
 const turnTable = document.getElementById("TurnTable")
 var playSpeed;
 
-var pitchShift = new Tone.PitchShift({
-    pitch: -5
-}).toMaster();
 
-toneMusic.connect(pitchShift)
 
-Tone.Buffer.on('load', () => {
-    alert('Ready for play');
-});
-
-window.play = function() {
-    Tone.Transport.start();
-}
 
 //これは「再生ボタン」に切り替えるやつ
 function playBtn() {
