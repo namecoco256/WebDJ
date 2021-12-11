@@ -18,17 +18,25 @@
     </div>
 
     <div id="TurnTable">
-        <input type="text" id="record" class="dial" data-min="-5" data-max="5" data-step="0.1" value="1.0" data-width="100em" data-height="100em" data-angleOffset="150">
+        <input type="text" id="record" class="dial" data-step="0.001" value="1.0" data-width="100em" data-height="100em" data-min="-5" data-max="5">
     </div>
     <!--<img id="record" src="record.jpg">-->
     <div id=btn>
         <button id="btn-mute" type="button"><i id="djMute" class="fas fa-volume-up"></i></button>
+        <div id=volSlider>
+            <input type="range" id="djVolume" min="-70" max="5" value="0" step="1">
+            <p><span id="current-value"></span></p>
+        </div>
         <button id="btn-play" type="button"><i id="djPlay" class="fas fa-play"></i></button>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.32/Tone.js" integrity="sha512-USKCQh+O8BX/a2K06xPNTwduhmQvN/m9FhkR7PRysCRlPoqIItl7Qz3xVTZC/oIHe6g5XvnLHDUgGpRMZZTmFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="main.js"></script>
     <script>
         $(function() {
-            $(".dial").knob();
+            $(".dial").knob({
+                'min': '-5',
+                'max': '5',
+            });
         });
     </script>
 
