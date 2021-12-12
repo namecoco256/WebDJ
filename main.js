@@ -12,13 +12,13 @@ var playSpeed;
 console.log(djMusic);
 
 /** ここで円グラフを作る */
+
 const TurnTableKnob = $(".dial").knob({
   /** 値が変わった時に発生するイベント */
-  
   change: function (value) {
-  controlMusicSpeed(value)
+    controlMusicSpeed(value)
   }
-  }); 
+}); 
 
 //これは音を止めるやつ
 async function pauseSound() {
@@ -26,7 +26,7 @@ async function pauseSound() {
   await djMusic.stop();
   songName.classList.remove("marquee-inner");
   console.log(record.value)
-
+  djMusic.playbackRate = 0;
 }
 
 //これは音を鳴らすやつ
@@ -35,6 +35,7 @@ async function playSound() {
   await djMusic.start();
   songName.classList.add("marquee-inner");
   console.log(record.value);
+  djMusic.playbackRate = record.value;
   djMusic._loop = true;
 }
 
@@ -63,16 +64,15 @@ btnMute.addEventListener("click", ()=>{
   }
 });
 
-btnPlay.addEventListener("click", ()=>{
+btnPlay.addEventListener("click", ()=>{ //再生ボタンが押された場合
   // pausedがtrue=>停止, false=>再生中
-  console.log(djMusic.state)
   if( djMusic.state === "stopped" ){
     playSound();
   }
   else if(djMusic.state === 'started'){
-    
     pauseSound();
   }
+  console.log(djMusic.state)
 });
 
 /**
@@ -113,11 +113,11 @@ document.addEventListener('keypress', keypress_pause);
 function keypress_pause(e) {
 
 	if(e.code === 'KeyL'){
-    if( ! djMusic.paused ){
-      pauseSound();
-    }
-    else{
+    if( djMusic.state === "stopped" ){
       playSound();
+    }
+    else if(djMusic.state === 'started'){
+      pauseSound();
     }
   }
   //いずれかのキーが押された時の処理
@@ -129,7 +129,13 @@ document.addEventListener('keypress', keypress_pauseK);
 function keypress_pauseK(e) {
 
 	if(e.code === 'KeyK'){
-    pauseSound();
+    btnPlay.innerHTML = '<i id="djPlay" class="fas fa-play"></i>';  // 「再生ボタン」に切り替え
+    djMusic.playbackRate = 0; //レジューム再生させたいので、再生速度を0に
+    songName.classList.remove("marquee-inner");
+    console.log(record.value)
+    if( djMusic.state === "stopped" ){
+      playSound();
+    }
   }
   //いずれかのキーが押された時の処理
   return false;
@@ -138,7 +144,11 @@ document.addEventListener('keyup', keypress_playK);
 function keypress_playK(e) {
 
 	if(e.code === 'KeyK'){
-    playSound();
+    btnPlay.innerHTML = '<i id="djPlay" class="fas fa-pause"></i>';  // 「一時停止ボタン」に切り替え
+    djMusic.playbackRate = record.value;
+    songName.classList.add("marquee-inner");
+    console.log(record.value);
+    djMusic._loop = true;
   }
   //いずれかのキーが押された時の処理
   return false;
