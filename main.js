@@ -35,7 +35,6 @@ async function playSound() {
   await djMusic.start();
   songName.classList.add("marquee-inner");
   console.log(record.value);
-  djMusic.playbackRate = record.value;
   djMusic._loop = true;
 }
 
@@ -68,6 +67,7 @@ btnPlay.addEventListener("click", ()=>{ //再生ボタンが押された場合
   // pausedがtrue=>停止, false=>再生中
   if( djMusic.state === "stopped" ){
     playSound();
+	  djMusic.playbackRate = record.value;
   }
   else if(djMusic.state === 'started'){
     pauseSound();
