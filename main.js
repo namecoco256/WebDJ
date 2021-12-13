@@ -220,9 +220,10 @@ var soundFile = document.getElementById('soundInput');
 soundFile.addEventListener("change", function(event) {
   
   pauseSound();
-  djMusic.playbackRate = record.value;
+  
   djMusic = new Tone.Player(URL.createObjectURL(soundFile.files[0])).toDestination();
-
+	djMusic.playbackRate = 1.0;
+	
   var fileList = document.getElementById("soundInput").files;
   var list = "";
   for(var i=0; i<fileList.length; i++){
