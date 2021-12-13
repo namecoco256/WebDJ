@@ -26,7 +26,7 @@ async function pauseSound() {
   await djMusic.stop();
   songName.classList.remove("marquee-inner");
   console.log(record.value)
-	djMusic.playbackRate = 0;
+  djMusic.playbackRate = 0;
 }
 
 //これは音を鳴らすやつ
@@ -35,8 +35,8 @@ async function playSound() {
   await djMusic.start();
   songName.classList.add("marquee-inner");
   console.log(record.value);
-  djMusic._loop = true;
   djMusic.playbackRate = record.value;
+  djMusic._loop = true;
 }
 
 //これは「ミュートボタン」に切り替えるやつ
@@ -220,9 +220,9 @@ var soundFile = document.getElementById('soundInput');
 soundFile.addEventListener("change", function(event) {
   
   pauseSound();
-  
+
   djMusic = new Tone.Player(URL.createObjectURL(soundFile.files[0])).toDestination();
-	
+
   var fileList = document.getElementById("soundInput").files;
   var list = "";
   for(var i=0; i<fileList.length; i++){
@@ -230,10 +230,5 @@ soundFile.addEventListener("change", function(event) {
   }
   songName.innerHTML = "Now Playing...  " + list;
   
-  btnPlay.innerHTML = '<i id="djPlay" class="fas fa-pause"></i>';  // 「一時停止ボタン」に切り替え
-  djMusic.playbackRate = record.value;
-  songName.classList.add("marquee-inner");
-  console.log(record.value);
-  djMusic._loop = true;
 
 },false);
