@@ -26,7 +26,6 @@ async function pauseSound() {
   await djMusic.stop();
   songName.classList.remove("marquee-inner");
   console.log(record.value)
-  djMusic.playbackRate = 0;
 }
 
 //これは音を鳴らすやつ
@@ -115,7 +114,6 @@ function keypress_pause(e) {
 	if(e.code === 'KeyL'){
     if( djMusic.state === "stopped" ){
       playSound();
-      songName.classList.add("marquee-inner");
     }
     else if(djMusic.state === 'started'){
       pauseSound();
