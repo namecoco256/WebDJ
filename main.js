@@ -115,6 +115,7 @@ function keypress_pause(e) {
 	if(e.code === 'KeyL'){
     if( djMusic.state === "stopped" ){
       playSound();
+      songName.classList.add("marquee-inner");
     }
     else if(djMusic.state === 'started'){
       pauseSound();
