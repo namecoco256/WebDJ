@@ -230,5 +230,10 @@ soundFile.addEventListener("change", function(event) {
   }
   songName.innerHTML = "Now Playing...  " + list;
   
+  btnPlay.innerHTML = '<i id="djPlay" class="fas fa-pause"></i>';  // 「一時停止ボタン」に切り替え
+  djMusic.playbackRate = record.value;
+  songName.classList.add("marquee-inner");
+  console.log(record.value);
+  djMusic._loop = true;
 
 },false);
