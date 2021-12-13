@@ -23,19 +23,16 @@ const TurnTableKnob = $(".dial").knob({
 //これは音を止めるやつ
 async function pauseSound() {
   btnPlay.innerHTML = '<i id="djPlay" class="fas fa-play"></i>';  // 「再生ボタン」に切り替え
-  await djMusic.stop();
+  djMusic.playbackRate = 0; //レジューム再生させたいので、再生速度を0に
   songName.classList.remove("marquee-inner");
-  console.log(record.value)
-  djMusic.playbackRate = 0;
 }
 
 //これは音を鳴らすやつ
 async function playSound() { 
   btnPlay.innerHTML = '<i id="djPlay" class="fas fa-pause"></i>';  // 「一時停止ボタン」に切り替え
-  await djMusic.start();
+  djMusic.playbackRate = record.value;
   songName.classList.add("marquee-inner");
   console.log(record.value);
-  djMusic.playbackRate = record.value;
   djMusic._loop = true;
 }
 
