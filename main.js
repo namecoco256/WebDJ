@@ -63,10 +63,10 @@ btnMute.addEventListener("click", ()=>{
 
 btnPlay.addEventListener("click", ()=>{ //再生ボタンが押された場合
   // pausedがtrue=>停止, false=>再生中
-  if( djMusic.state === "stopped" ){
+  if( djMusic.playbackRate === 0 ){
     playSound();
   }
-  else if(djMusic.state === 'started'){
+  else if(djMusic.state !== 0){
     pauseSound();
   }
   console.log(djMusic.state)
