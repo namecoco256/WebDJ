@@ -26,7 +26,6 @@ async function pauseSound() {
   await djMusic.stop();
   songName.classList.remove("marquee-inner");
   console.log(record.value)
-  djMusic.playbackRate = 0;
 }
 
 //これは音を鳴らすやつ
@@ -218,7 +217,7 @@ window.onload = () => {
 //これは入れた音を適用するやつ
 var soundFile = document.getElementById('soundInput');
 soundFile.addEventListener("change", function(event) {
-  
+  djMusic.playbackRate = 1;
   pauseSound();
 
   djMusic = new Tone.Player(URL.createObjectURL(soundFile.files[0])).toDestination();
