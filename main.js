@@ -228,6 +228,6 @@ soundFile.addEventListener("change", function(event) {
     list += fileList[i].name + "<br>";
   }
   songName.innerHTML = "Now Playing...  " + list;
-  
+  djMusic.volume.value = inputElem.value;
 
 },false);
