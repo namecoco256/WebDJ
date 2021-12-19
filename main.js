@@ -7,7 +7,9 @@ const turnTable = document.getElementById("TurnTable")
 const inputElem = document.getElementById('djVolume'); // input要素
 const currentValueElem = document.getElementById('current-value'); // 埋め込む先のspan要素
 var playSpeed;
+const spinner = document.getElementById('loading');
 
+spinner.classList.add('loaded');
 
 console.log(djMusic);
 
@@ -213,10 +215,13 @@ window.onload = () => {
   inputElem.addEventListener('input', rangeOnChange); // スライダー変化時にイベントを発火
   setCurrentValue(inputElem.value); // ページ読み込み時に値をセット
 }
-
+function loadEnd(){
+  spinner.classList.add('loaded');
+}
 //これは入れた音を適用するやつ
 var soundFile = document.getElementById('soundInput');
 soundFile.addEventListener("change", function(event) {
+  spinner.classList.remove('loaded');
   djMusic.playbackRate = 1;
   pauseSound();
 
@@ -230,4 +235,5 @@ soundFile.addEventListener("change", function(event) {
   songName.innerHTML = "Now Playing...  " + list;
   djMusic.volume.value = inputElem.value;
 
+  setTimeout(loadEnd, 1500);
 },false);
